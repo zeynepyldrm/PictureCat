@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/zeynepyldrm/PitcureCat#readme",
   "devDependencies": {
+    "nodemon": "^2.0.16",
     "prettier": "2.6.2"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
   }
 }
