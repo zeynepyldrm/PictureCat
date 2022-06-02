@@ -14,7 +14,7 @@ const authController=require("./controllers/authController")
 const app = express();
 
 //connect DB
-mongoose.connect('mongodb://localhost/PictureCat-Test-DB', {
+mongoose.connect('mongodb+srv://zeynep:k7BTjTzFcAkKw9Jg@cluster0.vrf5i.mongodb.net/PictureCat-Test-DB?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -52,7 +52,7 @@ app.post("/register",authController.register);
 app.post("/login",authController.login);
 
 
-const port = 3000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(` server ${port} da çalışıyor ...`);
