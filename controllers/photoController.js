@@ -2,8 +2,19 @@ const Photo=require("../models/Photo");
 const fs = require('fs');
 
 exports.getAllPhotos = async (req, res) => {
-    const photos = await Photo.find({});
-    res.render('index', { photos })
+    const page=req.query.page || 1;
+    const photoPerPage=2;
+    const totalPhotos=await Photo.find().countDocuments();
+    const photos=await Photo.find({})
+    .sort('-dateCreated')
+    .skip((page-1)*photoPerPage)
+    .limit(photoPerPage)
+
+    res.render('index',{
+        photos:photos,
+        current:page,
+        pages:Math.ceil(totalPhotos/photoPerPage)
+    })
 }
 
 exports.getPhoto = async (req, res) => {
