@@ -1,4 +1,7 @@
 const Photo = require("../models/Photo");
+const axios = require('axios');
+const unplashService = require('../services/unplashService');
+const { render } = require("ejs");
 
 exports.getAboutPage = (req, res) => {
     res.render('about');
@@ -17,5 +20,9 @@ exports.getRegisterPage = (req, res) => {
     res.render("register");
 }
 exports.getLoginPage = (req, res) => {
-    res.render("login");
+
+    unplashService.getRandomPhoto
+        .then(imageUrl => res.render("login", { imageUrl }))
+        .catch(err => console.log(error));
 }
+
